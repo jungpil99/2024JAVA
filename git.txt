@@ -1,0 +1,10 @@
+깃 허브 연동
+1. git init
+2. git add .
+3. git commit -m " "
+4. git remote add origin https://github.com/jungpil99/****.git
+5. git push -u origin master
+
+git config --global user.email "kaka87355377@gmail.com"
+git config --global user.name "jungpil99"
+-------------------------------
