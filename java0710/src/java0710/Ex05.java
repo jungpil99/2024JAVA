@@ -15,41 +15,41 @@ public class Ex05 {
 			System.out.println("------------------------------------");
 			System.out.println("1.로그인 | 2.회원가입 | 3.입금/출금 | 4.종료");
 			System.out.println("------------------------------------");
-			System.out.println("선택>");
+			System.out.print("선택>");
 			
 			int menuNum = Integer.parseInt(scan.nextLine());
 			
 			switch(menuNum) {
 			case 1: //로그인
-				System.out.println("아이디>");
+				System.out.print("아이디>");
 				id = scan.nextLine();
-				System.out.println("패스워드>");
+				System.out.print("패스워드>");
 				pwd = scan.nextLine();
 				break;
 			case 2: //회원가입
-				System.out.println("아이디>");
+				System.out.print("아이디>");
 				id = scan.nextLine();
-				System.out.println("비밀번호>");
+				System.out.print("비밀번호>");
 				pwd = scan.nextLine();
-				System.out.println("이메일>");
+				System.out.print("이메일>");
 				email = scan.nextLine();
-				System.out.println("전화번호>");
+				System.out.print("전화번호>");
 				num = scan.nextLine();
 				break;
 			case 3: // 입출금
 				System.out.println("-----------------------------");
 				System.out.println("1.입금 | 2.출금 | 3.잔액 | 4.종료");
 				System.out.println("-----------------------------");
-				System.out.println("선택>");
+				System.out.print("선택>");
 				int subMenu = Integer.parseInt(scan.nextLine());
 				
 				switch(subMenu) {
 				case 1:
-					System.out.println("입금액>");
+					System.out.print("입금액>");
 					balance += Integer.parseInt(scan.nextLine());
 					break;
 				case 2:
-					System.out.println("출금액>");
+					System.out.print("출금액>");
 					balance -= Integer.parseInt(scan.nextLine());
 					break;
 				case 3:
