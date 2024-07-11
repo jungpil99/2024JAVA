@@ -3,7 +3,7 @@ package java0709;
 import java.util.Scanner;
 
 /**
- * 입력받은 숫자가 양수일때 양수로 음수일때 양수로 바꿔라 
+ * 입력받은 숫자가 양수일때 양수로 음수일때 양수로 출력
  */
 public class Ex08 {
 
@@ -20,6 +20,7 @@ public class Ex08 {
 			int abs = Math.abs(a);
 			System.out.printf("%d", abs);
 		}
+		
 	}
 
 }
