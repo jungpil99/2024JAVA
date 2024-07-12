@@ -39,6 +39,10 @@ public class Array1 {
 		for (int i = 0; i < 5; i++) {
 			System.out.println(myArr3[i]);
 		}
+		
+		int MyArr4[] = new int[] {12,22,33,44,55};
+		System.out.println(MyArr4[4]); //4가 55이니까 그럼 배열은 Arr[1]부터가 아니라 Arr[0]부터 시작한다 Arr[0]이 12
+		
 	}
 
 }
