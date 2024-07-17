@@ -1,0 +1,9 @@
+package sec06.exam03.package1;
+
+public class B {
+	A a; //default 접근제한
+	
+	void method() {
+		a.x = 200;
+	}
+}

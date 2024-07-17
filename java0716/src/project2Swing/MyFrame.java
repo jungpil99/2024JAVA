@@ -125,6 +125,7 @@ public class MyFrame extends JFrame{
 					break;
 				}
 			}
+			
 			System.out.println(member);
 			
 		}
