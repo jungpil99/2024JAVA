@@ -61,7 +61,7 @@ public class Cal extends JFrame implements ActionListener{
 	@Override
 	public void actionPerformed(ActionEvent e) {
 //		System.out.println(e.getSource());
-		if(e.getSource() == jb1) {	
+		if(e.getSource() == jb1) {
 			System.out.println("+");
 		}else if(e.getSource() == jb2) {
 			System.out.println("-");
