@@ -8,12 +8,14 @@ import java.awt.event.ActionListener;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.time.LocalTime;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
@@ -28,8 +30,8 @@ public class ViewDept extends JFrame{
 	JFrame jf;
 	
 	ViewDept(){
-		Thread thread = new Thread(new Th1());
-		thread.start();
+//		Wintime wintime = new Wintime();
+//		wintime.start();
 		jf = this;
 		String URL = "jdbc:mysql://localhost:3307/spring5fs";
 		try {
@@ -55,7 +57,12 @@ public class ViewDept extends JFrame{
 		jp2.add(ta);
 		con.add(jp2, BorderLayout.CENTER);
 		
-		this.setTitle("");
+		Wintime wintime = new Wintime();
+		Thread thread = new Thread(wintime);
+		thread.start();
+		con.add(wintime, BorderLayout.SOUTH);
+		
+		this.setTitle("테이블");
 		this.setBounds(1300, 200, 500, 400);
 		this.setVisible(true);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -65,26 +72,31 @@ public class ViewDept extends JFrame{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				String str = tf.getText();
-				String sql = String.format("select * from dept where loc like '%%%s%%'", str);
+//				String sql = String.format("select * from dept where loc like '%%%s%%'", str);
 				try {
-					ResultSet rs = stmt.executeQuery(sql);
+					
+					ResultSet rs = stmt.executeQuery(str);
+					ResultSetMetaData rsmd = rs.getMetaData();
+		            int columnsNumber = rsmd.getColumnCount();
 					ta.setText("");
 					
-					boolean flag = true;
+//					boolean flag = true;
 					while(rs.next()) { //rs.next 에의해 반복 구조가 결정됨
-						flag = false;
-						int deptno = rs.getInt("deptno");
-						String dname = rs.getString("dname");
-						String loc = rs.getString("loc");
-						ta.append(String.format("%s %s %s\n", deptno, dname, loc));
+//						flag = false;
+						for (int i = 1; i <= columnsNumber; i++) {
+		                    if (i > 1) ta.append(",  ");
+		                    String columnValue = rs.getString(i);
+		                    ta.append(rsmd.getColumnName(i) + ": " + columnValue);
+		                }
+		                ta.append("\n");
 					}
-					if(flag) {
-						JOptionPane.showMessageDialog(jf, "자료 없음","정보", JOptionPane.ERROR_MESSAGE);
-					}
+//					if(flag) {
+//						JOptionPane.showMessageDialog(jf, "자료 없음","정보", JOptionPane.ERROR_MESSAGE);
+//					}
 					
 				} catch (SQLException e2) {
 					// TODO Auto-generated catch block
-					e2.printStackTrace();
+					JOptionPane.showMessageDialog(jf, "자료 없음","정보", JOptionPane.ERROR_MESSAGE);
 				}
 			}
 		});
@@ -95,5 +107,28 @@ public class ViewDept extends JFrame{
 	public static void main(String[] ar) {
 		new ViewDept();
 	}
-
+	
+	class Wintime extends JPanel implements Runnable{
+		JLabel lb;
+		Wintime(){
+			lb = new JLabel("");
+			this.add(lb);
+		}
+		@Override
+		public void run() {
+			for (;;) {
+				LocalTime localTime = LocalTime.now();
+				String str = String.format("%d:%d:%d\n",
+						localTime.getHour(),localTime.getMinute(),localTime.getSecond());
+				lb.setText(str);
+				try {
+					Thread.sleep(500);
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+			
+		}
+	}
 }
