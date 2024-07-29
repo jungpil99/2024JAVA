@@ -11,6 +11,7 @@ String kor3 = "";
 String eng3 = "";
 String math3 = "";
 
+
 String num = request.getParameter("num");
 String find = request.getParameter("find");
 String name = request.getParameter("name");
