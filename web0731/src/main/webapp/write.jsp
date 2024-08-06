@@ -35,8 +35,14 @@
     </table>
 
     <br>
-    <input type="submit" value="저장" >
-    <input type="button" value="취소" onclick="history.back()">
+    <input type="submit" value="저장" style="" >
+    <input type="button" value="취소" onclick="history.back()" style="width: 100%;
+            padding: 10px;
+            background-color: #333;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;">
 </form>
 
 </body>

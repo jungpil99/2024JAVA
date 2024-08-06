@@ -31,7 +31,7 @@
             display: block;
             margin-bottom: 5px;
         }
-        input[type="text"], input[type="password"], input[type="email"] {
+        input[type="text"], input[type="password"], input[type="tel"] {
             width: 95%;
             padding: 8px;
             margin-bottom: 10px;
@@ -61,8 +61,8 @@
             <input type="text" id="username" name="username" required>
             <label for="password">Password:</label>
             <input type="password" id="password" name="password" required>
-            <label for="email">Email:</label>
-            <input type="email" id="email" name="email" required>
+            <label for="tel">Tel:</label>
+            <input type="tel" id="tel" name="tel" required>
             <input type="submit" value="Register">
         </form>
     </div>
