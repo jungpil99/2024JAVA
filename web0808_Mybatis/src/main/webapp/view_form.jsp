@@ -12,7 +12,7 @@
     </style>
 </head>
 <body>
-<c:forEach var="dto" items="${dto}">
+<c:forEach var="dto" items="${list}">
 <table>
     <tr>
         <th>제목</th>
