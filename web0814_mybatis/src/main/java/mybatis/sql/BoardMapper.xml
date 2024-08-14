@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="BoardMapper">
+    <select id="viewBoard" parameterType="int" resultType="com.board.db.BoardDto">
+        SELECT * FROM board order by num desc limit #{start}, #{listSize}
+    </select>
+
+    <select id="selectWebhardByNum" parameterType="int" resultType="com.board.db.BoardDto">
+        SELECT * FROM webhard WHERE num = #{num}
+    </select>
+    
+    <select id="countBoard" resultType="int">
+        SELECT count(*) FROM board
+    </select>
+
+    <insert id="addWebhard" parameterType="com.board.db.BoardDto">
+        INSERT INTO webhard (fname, ftime, fsize)
+        VALUES (#{fname}, #{ftime}, #{fsize})
+    </insert>
+
+    <update id="updateCart" parameterType="int">
+        UPDATE cart
+        SET quantity = quantity + 1
+        WHERE product_id = #{product_id}
+    </update>
+
+    <delete id="deletewebhard" parameterType="int">
+        DELETE FROM webhard WHERE num = #{num}
+    </delete>
+</mapper>
