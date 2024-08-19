@@ -1,8 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
+    
 <!DOCTYPE html>
 <html>
 <head>
@@ -50,52 +48,36 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 <div class="container" style="padding-top: 50;">
 <table class="table table-bordered table-hover">
-    <thead>
-    <tr>
-        <th class="num"    scope="col">번호    </th>
-        <th class="title"  scope="col">제목    </th>
-        <th class="writer" scope="col">작성자  </th>
-        <th class="regtime"scope="col">작성일시</th>
-        <th                scope="col">조회수  </th>
-    </tr>
-    </thead>
     <tbody>
-    <c:forEach var="msg" items="${msgList}">
     <tr>
-        <td>${msg.num}</td>
-        <td style="text-align:left;">
-            <a href="view?num=${msg.num}&page=${param.page}">
-                ${msg.title}
-            </a>
-        </td>
+        <th scope="col">제목</th>
+        <td>${msg.title}</td>
+    </tr>
+    <tr>
+        <th scope="col">작성자</th>
         <td>${msg.writer}</td>
+    </tr>
+    <tr>
+        <th scope="col">작성일시</th>
         <td>${msg.regtime}</td>
+    </tr>
+    <tr>
+        <th scope="col">조회수</th>
         <td>${msg.hits}</td>
     </tr>
-    </c:forEach>
+    <tr>
+        <th scope="col">내용</th>
+        <td>${msg.content}</td>
+    </tr>
     </tbody>
 </table>
 
 <br>
-<nav aria-label="Page navigation example">
-			<ul class="pagination justify-content-center">
-				<c:forEach var="pgn" items="${pgnList}">
-					<li class="page-item"><a class="page-link"
-						href="list?page=${pgn.pageNo}"> <c:choose>
-								<c:when test="${pgn.curPage}">
-										<u>${pgn.display}</u>
-									</c:when>
-								<c:otherwise>
-										${pgn.display}
-									</c:otherwise>
-							</c:choose>
-					</a></li>
-				</c:forEach>
-			</ul>
-		</nav>
-
-<br>
-<input type="button" class="btn btn-outline-primary" value="글쓰기" onclick="location.href='write'">
+<input type="button" class="btn btn-outline-primary" value="목록보기" onclick="location.href='list'">
+<input type="button" class="btn btn-outline-primary" value="수정"
+       onclick="location.href='write?num=${param.num}'">
+<input type="button" class="btn btn-outline-primary" value="삭제"
+       onclick="location.href='delete?num=${param.num}'">
 </div>
 </body>
 </html>

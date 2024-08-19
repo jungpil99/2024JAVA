@@ -1,8 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -49,53 +47,31 @@
       </nav> 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 <div class="container" style="padding-top: 50;">
-<table class="table table-bordered table-hover">
-    <thead>
-    <tr>
-        <th class="num"    scope="col">번호    </th>
-        <th class="title"  scope="col">제목    </th>
-        <th class="writer" scope="col">작성자  </th>
-        <th class="regtime"scope="col">작성일시</th>
-        <th                scope="col">조회수  </th>
-    </tr>
-    </thead>
-    <tbody>
-    <c:forEach var="msg" items="${msgList}">
-    <tr>
-        <td>${msg.num}</td>
-        <td style="text-align:left;">
-            <a href="view?num=${msg.num}&page=${param.page}">
-                ${msg.title}
-            </a>
-        </td>
-        <td>${msg.writer}</td>
-        <td>${msg.regtime}</td>
-        <td>${msg.hits}</td>
-    </tr>
-    </c:forEach>
-    </tbody>
-</table>
+<form method="post" action="${action}">
+    <table class="table table-bordered table-hover">
+        <tr>
+            <th>제목</th>
+            <td><input type="text" class="form-control" name="title"  maxlength="80"
+                       value="${msg.title}">
+            </td>
+        </tr>
+        <tr>
+            <th>작성자</th>
+            <td><input type="text" class="form-control" name="writer" maxlength="20"
+                       value="${msg.writer}">
+            </td>
+        </tr>
+        <tr>
+            <th>내용</th>
+            <td><textarea class="form-control" name="content" id="exampleFormControlTextarea1" rows="9">${msg.content}</textarea>
+            </td>
+        </tr>
+    </table>
 
-<br>
-<nav aria-label="Page navigation example">
-			<ul class="pagination justify-content-center">
-				<c:forEach var="pgn" items="${pgnList}">
-					<li class="page-item"><a class="page-link"
-						href="list?page=${pgn.pageNo}"> <c:choose>
-								<c:when test="${pgn.curPage}">
-										<u>${pgn.display}</u>
-									</c:when>
-								<c:otherwise>
-										${pgn.display}
-									</c:otherwise>
-							</c:choose>
-					</a></li>
-				</c:forEach>
-			</ul>
-		</nav>
-
-<br>
-<input type="button" class="btn btn-outline-primary" value="글쓰기" onclick="location.href='write'">
+    <br>
+    <input type="submit" class="btn btn-outline-primary" value="저장">
+    <input type="button" class="btn btn-outline-primary" value="취소" onclick="history.back()">
+</form>
 </div>
 </body>
 </html>
