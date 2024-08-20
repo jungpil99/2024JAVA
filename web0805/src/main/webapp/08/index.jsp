@@ -21,7 +21,7 @@
                 <li><a href="#">DEPARTMENT</a></li>
                 <li><a href="#">GALLERY</a></li>
                 <li><a href="#">YOUTUBE</a></li>
-                <li><a href="community_form.jsp">커뮤니티</a></li>
+                <li><a href="list.jsp">커뮤니티</a></li>
                 <li><a href="#">고객센터</a></li>
             </ul>
 
