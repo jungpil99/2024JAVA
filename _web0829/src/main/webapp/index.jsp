@@ -5,8 +5,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
-String num = request.getParameter("deptno");
-
 String URL = "jdbc:mysql://localhost:3307/spring5fs";
 Connection conn = null;
 PreparedStatement pstmt = null;
@@ -32,38 +30,23 @@ conn = DriverManager.getConnection(URL, "root", "mysql");
     </style>
 </head>
 <body>
-
-<table>
-    <tr>
-        <th class="empno">사번 </th>
-        <th class="ename">이름</th>
-        <th class="job" >직급</th>
-        <th class="sal">월급</th>
-    </tr>
+<script>
+let arr1 = [];
+let json = null;;
 <%
-String sql = "select json_object('empno', empno, 'ename', ename, 'job', job, 'sal', sal) from emp";
+String sql = "select json_object('empno', empno, 'ename', ename, 'job', job, 'sal', sal) from emp;";
 pstmt = conn.prepareStatement(sql);
-pstmt.setString(1, num);
 ResultSet rs = pstmt.executeQuery();
 
 while(rs.next()){
-	String empno = rs.getString("empno");
-	String ename = rs.getString("ename");
-	String job = rs.getString("job");
-	String sal = rs.getString("sal");
+	String data = rs.getString(1);
 %>
-    <tr>
-        <td><%=empno %></td>
-        <td><%=ename %></td>
-        <td><%=job %></td>
-        <td><%=sal %></td>     
-    </tr>
-    
+    json = JSON.parse('<%=data%>');
+    arr1.push(json);
 <%
 }
 %>
-</table>
-
-
+console.log(arr1);
+</script>
 </body>
 </html>
