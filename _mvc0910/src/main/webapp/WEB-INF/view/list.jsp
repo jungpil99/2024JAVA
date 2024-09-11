@@ -66,7 +66,7 @@
 </div>
 
 <br>
-<input type="button" value="글쓰기" onclick="location.href='write'">
+<input type="button" value="글쓰기" onclick="location.href='write.do'">
 
 </body>
 </html>
